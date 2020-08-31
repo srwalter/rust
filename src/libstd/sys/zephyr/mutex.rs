@@ -14,7 +14,7 @@ impl Mutex {
     }
 
     #[inline]
-    pub unsafe fn init(&mut self) {
+    pub unsafe fn init(&self) {
         if zephyr::CONFIG_USERSPACE {
             // These need to be allocated with k_object_alloc(). Main mutex.rs
             // puts this in a Box which in not kernel memory when user space is
@@ -47,12 +47,12 @@ impl Mutex {
 pub struct ReentrantMutex {}
 
 impl ReentrantMutex {
-    pub unsafe fn uninitialized() -> ReentrantMutex {
+    pub const fn uninitialized() -> ReentrantMutex {
         ReentrantMutex { }
     }
 
     #[inline]
-    pub unsafe fn init(&mut self) {}
+    pub unsafe fn init(&self) {}
 
     #[inline]
     pub unsafe fn lock(&self) {

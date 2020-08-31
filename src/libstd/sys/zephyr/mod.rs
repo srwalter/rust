@@ -95,6 +95,6 @@ pub fn decode_error_kind(errno: i32) -> crate::io::ErrorKind {
     }
 }
 
-pub unsafe fn abort_internal() -> ! {
+pub fn abort_internal() -> ! {
     core::intrinsics::abort();
 }

@@ -561,7 +561,6 @@ fn rust_panic_with_hook(
     }
     #[cfg(target_os = "zephyr")]
     {
-        let location = Location::internal_constructor(file, line, col);
         let mut info = PanicInfo::internal_constructor(message, &location);
         info.set_payload(payload.get());
         default_hook(&info);
